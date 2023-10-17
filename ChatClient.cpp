@@ -68,7 +68,7 @@ bool ChatClient::Loop() {
 
 		if (sendto(sock_, message.c_str(), messageLength_, 0, (SOCKADDR*)&toAddr_, tolen_) == SOCKET_ERROR) {
 			cout << "Error : sendto" << endl;
-			return false;
+			return true;
 		}
 
 		const int MESSAGE_LENGTH = messageLength_;
@@ -82,14 +82,23 @@ bool ChatClient::Loop() {
 		if (recvfrom(sock_, buff, MESSAGE_LENGTH, 0, (SOCKADDR*)&fromAddr, &fromlen) == SOCKET_ERROR) {
 			cout << "Error : Recieve Message" << endl;
 			delete[] buff;
-			return false;
+			return true;
 		}
 		else {
 			//•\Ž¦
 			cout << "Receive Message : " << buff << endl;
 			delete[] buff;
 		}
+
+		string tmp = "";
+		cout << "Want to Close Connection? (Y / N) : ";
+		cin >> tmp;
+		if (tmp == "Y") {
+			cout << "Now Closing Connection..." << endl;
+			break;
+		}
 	}
+	return false;
 }
 
 bool ChatClient::ReleaseSocket() {

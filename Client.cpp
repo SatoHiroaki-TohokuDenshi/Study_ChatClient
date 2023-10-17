@@ -43,7 +43,12 @@ int main() {
 	cout << "Now Connecting..." << endl;
 	cout << "Connection opens now! Let's Communicate with Others!" << endl;
 	//メインループ
-	
+	if (pClient->Loop()) {
+		cout << "Error : Connection Failer" << endl;
+	}
+	else {
+		cout << "Success : Connection is Closed" << endl;
+	}
 
 	//ソケットの後処理
 	if (pClient->ReleaseSocket()) {
