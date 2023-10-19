@@ -24,13 +24,15 @@ public:
 	ChatClient(unsigned short port, unsigned int length);
 	~ChatClient();
 
+	///// ‰Šú‰» /////
 	bool InitWinSock();
 	bool InitSocket();
 	bool SetServerIP();
 
+	///// ƒƒCƒ“ƒ‹[ƒv /////
 	bool Loop();
 
-public:
+	///// ‰ğ•ú /////
 	bool ReleaseSocket();
 	bool ReleaseWinSock();
 };

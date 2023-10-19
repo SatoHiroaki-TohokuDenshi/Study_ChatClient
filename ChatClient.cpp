@@ -71,15 +71,13 @@ bool ChatClient::Loop() {
 			return true;
 		}
 
-		const int MESSAGE_LENGTH = messageLength_;
-
 		///// メッセージ受信 /////
 		//上限値をサーバと合わせる
 		char* buff = new char[messageLength_];	//受取用バッファ
 
 		SOCKADDR_IN fromAddr;
 		int fromlen = sizeof(fromAddr);
-		if (recvfrom(sock_, buff, MESSAGE_LENGTH, 0, (SOCKADDR*)&fromAddr, &fromlen) == SOCKET_ERROR) {
+		if (recvfrom(sock_, buff, messageLength_, 0, (SOCKADDR*)&fromAddr, &fromlen) == SOCKET_ERROR) {
 			cout << "Error : Recieve Message" << endl;
 			delete[] buff;
 			return true;
