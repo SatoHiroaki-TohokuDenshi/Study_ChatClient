@@ -35,7 +35,7 @@ int main() {
 	cout << "Connection opens now! Let's Communicate with Others!" << endl;
 	
 	//ƒƒCƒ“ƒ‹[ƒv
-	if (pClient->Loop()) {
+	if (!(pClient->Loop())) {
 		cout << "Error : Connection Failer" << endl;
 	}
 	else {

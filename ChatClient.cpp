@@ -68,7 +68,7 @@ bool ChatClient::Loop() {
 
 		if (sendto(sock_, message.c_str(), messageLength_, 0, (SOCKADDR*)&toAddr_, tolen_) == SOCKET_ERROR) {
 			cout << "Error : sendto" << endl;
-			return true;
+			return false;
 		}
 
 		///// メッセージ受信 /////
@@ -80,7 +80,7 @@ bool ChatClient::Loop() {
 		if (recvfrom(sock_, buff, messageLength_, 0, (SOCKADDR*)&fromAddr, &fromlen) == SOCKET_ERROR) {
 			cout << "Error : Recieve Message" << endl;
 			delete[] buff;
-			return true;
+			return false;
 		}
 		else {
 			//表示
@@ -96,7 +96,7 @@ bool ChatClient::Loop() {
 			break;
 		}
 	}
-	return false;
+	return true;
 }
 
 bool ChatClient::ReleaseSocket() {
